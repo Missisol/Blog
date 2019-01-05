@@ -16,7 +16,6 @@ router.get('/', async (req, res, next) => {
 
 // Удаление комментария
 router.delete('/delete/:commentId', async (req, res, next) => {
-  console.log(req.params);
   const commentId = req.params.commentId;
   await CommentModel.deleteOne({commentId: commentId});
   res.json(req.params);
@@ -24,10 +23,9 @@ router.delete('/delete/:commentId', async (req, res, next) => {
 });
 
 // Добавление комментария
-router.post('/', async (req, res, next) => {
+router.post('/add', async (req, res, next) => {
   let comment = new CommentModel(req.body);
   res.json(comment);
-
   await comment.save();
   await CommentModel.findOne({id: req.body.id});
 });

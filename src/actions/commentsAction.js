@@ -7,6 +7,7 @@ export const getCommentsStarted = createAction('[GET_COMMENTS] Getting started')
 export const getCommentsCompleted = createAction('[GET_COMMENTS] Getting completed');
 export const getCommentsFailed = createAction('[GET_COMMENTS] Getting failed');
 export const deleteCommentSuccess = createAction('[DELETE_COMMENT] Deleting successfully');
+export const addCommentSuccess = createAction('[ADD_COMMENT] Adding successfully');
 
 export const getComments = () => (dispatch, getState) => {
   const state = getState();
@@ -35,21 +36,27 @@ export const deleteComment = (commentId) => (dispatch) => {
     });
 };
 
+export const addComment = (name, commentId, userId, body) => (dispatch) => {
+  return fetch(`http://localhost:3000/api/comments/add`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      commentId: commentId,
+      userId: userId,
+      body: body
+    })
+  })
+    .then((response) =>  response.json())
+    .then((data) => {
+      dispatch(addCommentSuccess(data));
+    })
+    .catch(() => {
+      console.log('err');
+    });
+};
 
-// export function getComments() {
-//   return {
-//     type: GET_COMMENTS,
-//     payload: axios.get('http://localhost:3000/api/comments')
-//   }
-// }
-//
-// export function deleteComment(commentId) {
-//   return {
-//     type: DELETE_COMMENT,
-//     payload: axios.delete(`http://localhost:3000/api/comments/delete/${commentId}`)
-//   }
-// }
-//
+
 // export function addComment(name, commentId, userId, body) {
 //   return {
 //     type: ADD_COMMENTS,

@@ -9,7 +9,7 @@ import CommentForm from 'components/CommentForm';
 class CommentsContainer extends Component {
 
   componentDidMount() {
-  const { getComments, deleteComment } = this.props;
+  const { getComments, deleteComment, addComment} = this.props;
 
     // получение
     getComments();
@@ -36,7 +36,8 @@ class CommentsContainer extends Component {
       const body = $('#body').val();
 
       if (name && commentId && userId && body) {
-        this.props.dispatch(addComment(name, commentId, userId, body));
+        addComment(name, commentId, userId, body);
+
         $name.val('');
         $commentId.val('');
         $userId.val('');
@@ -84,7 +85,8 @@ function mapDispatchToProps(dispatch, props) {
   return {
     ...props,
     getComments: () => dispatch(getComments()),
-    deleteComment: (commentId) => dispatch(deleteComment(commentId))
+    deleteComment: (commentId) => dispatch(deleteComment(commentId)),
+    addComment: (name, commentId, userId, body) => dispatch(addComment(name, commentId, userId, body)),
   }
 }
 

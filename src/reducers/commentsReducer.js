@@ -61,9 +61,11 @@
 //   return state;
 // }
 
-import { handleActions } from 'redux-actions';
-import { getCommentsStarted, getCommentsCompleted, getCommentsFailed,
-  deleteCommentSuccess } from 'actions/commentsAction';
+import {handleActions} from 'redux-actions';
+import {
+  getCommentsStarted, getCommentsCompleted, getCommentsFailed,
+  deleteCommentSuccess, addCommentSuccess
+} from 'actions/commentsAction';
 
 const initialState = {
   comments: [],
@@ -91,20 +93,26 @@ export default handleActions({
     }
   },
   [deleteCommentSuccess]: (state, action) => {
-    console.log(action.payload.commentId);
     let index = null;
-            state.comments.forEach((value, i) => {
-              if (parseInt(value.commentId) === parseInt(action.payload.commentId)) {
-                index = i;
-              }
-            });
-
-      if (index !== null) {
-        state.comments.splice(index, 1);
+    state.comments.forEach((value, i) => {
+      if (parseInt(value.commentId) === parseInt(action.payload.commentId)) {
+        index = i;
       }
-      return {
-        ...state,
-        comments: [...state.comments]
-      };
+    });
+
+    if (index !== null) {
+      state.comments.splice(index, 1);
+    }
+    return {
+      ...state,
+      comments: [...state.comments]
+    };
+  },
+  [addCommentSuccess]: (state, action) => {
+    state.comments.push(action.payload);
+    return {
+      ...state,
+      comments: [...state.comments]
+    };
   }
 }, initialState);
