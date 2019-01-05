@@ -9,7 +9,7 @@ import CommentForm from 'components/CommentForm';
 class CommentsContainer extends Component {
 
   componentDidMount() {
-  const { getComments, deleteComment, addComment} = this.props;
+  const { getComments, deleteComment, addComment, editComment } = this.props;
 
     // получение
     getComments();
@@ -54,7 +54,7 @@ class CommentsContainer extends Component {
       const text = $text.val();
 
       if (commentId && text) {
-        this.props.dispatch(editComment(commentId, text));
+        editComment(commentId, text);
         $text.val('');
       }
     })
@@ -67,7 +67,7 @@ class CommentsContainer extends Component {
       <Fragment>
         <CommentForm/>
         <CommentsList comments={comments}/>
-        { loading ? 'load' : ''}
+        { loading ? 'loading' : ''}
       </Fragment>
     )
   }
@@ -87,6 +87,7 @@ function mapDispatchToProps(dispatch, props) {
     getComments: () => dispatch(getComments()),
     deleteComment: (commentId) => dispatch(deleteComment(commentId)),
     addComment: (name, commentId, userId, body) => dispatch(addComment(name, commentId, userId, body)),
+    editComment: (commentId, text) => dispatch(editComment(commentId, text)),
   }
 }
 
