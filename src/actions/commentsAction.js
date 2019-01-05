@@ -37,16 +37,11 @@ export const deleteComment = (commentId) => (dispatch) => {
     });
 };
 
-export const addComment = (name, commentId, userId, body) => (dispatch) => {
+export const addComment = (dataForm) => (dispatch) => {
   return fetch(`http://localhost:3000/api/comments/add`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: name,
-      commentId: commentId,
-      userId: userId,
-      body: body
-    })
+    body: JSON.stringify(dataForm)
   })
     .then((response) =>  response.json())
     .then((data) => {
@@ -57,14 +52,11 @@ export const addComment = (name, commentId, userId, body) => (dispatch) => {
     });
 };
 
-export const editComment = (commentId, text) => (dispatch) => {
-  return fetch(`http://localhost:3000/api/comments/update/${commentId}`, {
+export const editComment = (dataForm) => (dispatch) => {
+  return fetch(`http://localhost:3000/api/comments/update/${dataForm.commentId}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      commentId: commentId,
-      text: text
-    })
+    body: JSON.stringify(dataForm)
   })
     .then((response) =>  response.json())
     .then((data) => {

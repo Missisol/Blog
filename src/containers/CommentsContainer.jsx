@@ -35,8 +35,15 @@ class CommentsContainer extends Component {
       const $body = $('#body');
       const body = $('#body').val();
 
+      const dataForm = {
+        name: name,
+        commentId: commentId,
+        userId: userId,
+        body: body
+      };
+
       if (name && commentId && userId && body) {
-        addComment(name, commentId, userId, body);
+        addComment(dataForm);
 
         $name.val('');
         $commentId.val('');
@@ -53,8 +60,13 @@ class CommentsContainer extends Component {
       const $text = $('#text' + commentId);
       const text = $text.val();
 
+      const data = {
+        commentId: commentId,
+        text: text
+      };
+
       if (commentId && text) {
-        editComment(commentId, text);
+        editComment(data);
         $text.val('');
       }
     })
@@ -86,8 +98,8 @@ function mapDispatchToProps(dispatch, props) {
     ...props,
     getComments: () => dispatch(getComments()),
     deleteComment: (commentId) => dispatch(deleteComment(commentId)),
-    addComment: (name, commentId, userId, body) => dispatch(addComment(name, commentId, userId, body)),
-    editComment: (commentId, text) => dispatch(editComment(commentId, text)),
+    addComment: (data) => dispatch(addComment(data)),
+    editComment: (data) => dispatch(editComment(data)),
   }
 }
 
