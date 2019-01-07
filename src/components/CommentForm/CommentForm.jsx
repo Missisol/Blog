@@ -1,5 +1,3 @@
-import './CommentForm.css';
-
 import React, { Component, Fragment } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -7,33 +5,31 @@ import PropTypes from 'prop-types';
 export default class CommentForm extends Component {
 
   render() {
+    const { postId } = this.props;
+
     return (
       <Fragment>
-        <h5>Добавить комментарий</h5>
+        <h5 className="mt-5" >Add comment</h5>
         <Form className="commentForm">
-          <FormGroup>
-            <Label for="name">Name</Label>
-            <Input type="text" name="name" id="name" placeholder="name" />
-          </FormGroup>
           <Row form>
             <Col md={6}>
               <FormGroup>
-                <Label for="commentId">commentId</Label>
-                <Input type="text" name="commentId" id="commentId" placeholder="commentId" />
+                <Input type="text" name="commentAuthor" id="commentAuthor" placeholder="Author" />
               </FormGroup>
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label for="userId">userId</Label>
-                <Input type="text" name="userId" id="userId" placeholder="userId" />
+                <Input type="text" name="commentEmail" id="commentEmail" placeholder="Email" />
               </FormGroup>
             </Col>
           </Row>
           <FormGroup>
-            <Label for="body">Text</Label>
-            <Input type="textarea" name="body" id="body" />
+            <Input type="text" name="commentTitle" id="commentTitle" placeholder="Comment title" />
           </FormGroup>
-          <Button id="com_add">Submit</Button>
+          <FormGroup>
+            <Input type="textarea" name="text" id="commentText" placeholder="Comment text" />
+          </FormGroup>
+          <button className="btn btn-secondary" data-postid={postId} id="commentAdd" >Submit</button>
         </Form>
       </Fragment>
 

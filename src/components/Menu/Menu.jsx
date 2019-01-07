@@ -1,9 +1,10 @@
 import './Menu.css';
 
-import React, { Component, Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
-import { Link, withRouter } from 'react-router-dom';
+import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem} from 'reactstrap';
+import {Link, withRouter} from 'react-router-dom';
+import Container from 'components/Container';
 
 @withRouter
 export default class Menu extends Component {
@@ -37,13 +38,16 @@ export default class Menu extends Component {
     return (
       <Fragment>
         <Navbar color="light" light expand="md">
-          <NavbarBrand className="text-primary font-weight-bold">{titleBlog}</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              {items.map((item, idx) => <NavItem className={location.pathname === item.href ? 'active' : ''} key={idx}><Link className="nav-link" to={item.href}>{item.title}</Link></NavItem>)}
-            </Nav>
-          </Collapse>
+          <Container>
+            <NavbarBrand className="text-primary font-weight-bold">{titleBlog}</NavbarBrand>
+            <NavbarToggler onClick={this.toggle}/>
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                {items.map((item, idx) => <NavItem className={location.pathname === item.href ? 'active' : ''}
+                 key={idx}><Link className="nav-link" to={item.href}>{item.title}</Link></NavItem>)}
+              </Nav>
+            </Collapse>
+          </Container>
         </Navbar>
       </Fragment>
     )

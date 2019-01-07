@@ -1,0 +1,16 @@
+.topPostsLink {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.topPostsLink:hover {
+    color: #ffffff;
+    background-color: #6c757d;
+}
+
+.title {
+    color: #007bff;
+    text-transform: uppercase;
+}
+

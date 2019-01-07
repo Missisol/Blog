@@ -1,8 +1,8 @@
 export default [
-    { href: '/', title: 'Главная' },
-    { href: '/blog', title: 'Блог' },
-    { href: '/users', title: 'Пользователи' },
-    { href: '/comments', title: 'Комментарии' },
+    { href: '/', title: 'Home' },
+    { href: '/posts', title: 'Posts' },
+    { href: '/users', title: 'Users' },
+    // { href: '/comments', title: 'Комментарии' },
     // { href: '/messages', title: 'Чат' },
-    { href: '/user', title: 'Войти в чат' },
+    // { href: '/user', title: 'Войти в чат' },
 ]

@@ -1,5 +1,7 @@
+import './CommentsList.css';
+
 import React, {Component, Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import { Row } from 'reactstrap';
 import Comment from 'components/Comment';
 
 import PropTypes from 'prop-types';
@@ -8,17 +10,17 @@ export default class CommentsList extends Component {
 
   // Компонент комментариев
   render() {
-    const { comments } = this.props;
+    const { comments, postId } = this.props;
 
     return (
       <Fragment>
-        <h4>Комментарии</h4>
-        <ul className="commentsList">
-          {comments.map((comment, idx) => {
-            return <Comment key={idx} {...comment} />
+        <h4 className="title mt-4">Comments</h4>
+        <Row className="commentsList">
+          {comments.length ===0 ? 'No comments yet' : comments.map((comment, idx) => {
+            return <Comment key={idx} {...comment} postId={postId} />
           })
           }
-        </ul>
+        </Row>
       </Fragment>
     )
   }

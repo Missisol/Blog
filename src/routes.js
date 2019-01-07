@@ -1,6 +1,6 @@
-import CommentsContainer from 'containers/CommentsContainer';
-import CommentContainer from 'containers/CommentContainer';
 import HomePage from 'components/HomePage';
+import PostPageContainer from 'containers/PostsPageContainer';
+import OnePostContainer from "containers/OnePostContainer";
 
 export default [
   {
@@ -9,13 +9,13 @@ export default [
     component: HomePage,
   },
   {
-    path: '/comments',
+    path: '/posts',
     exact: true,
-    component: CommentsContainer,
+    component: PostPageContainer,
   },
   {
-    path: '/comments/:id',
+    path: '/post/:_id',
     exact: true,
-    component: CommentContainer,
-  }
+    component: OnePostContainer,
+  },
 ];

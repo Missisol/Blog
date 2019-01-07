@@ -7,33 +7,33 @@ import {
 
 const initialState = {
   comments: [],
-  loading: false,
+  loadingComments: false,
 };
 
 export default handleActions({
   [getCommentsStarted]: (state) => {
     return {
       ...state,
-      loading: true,
+      loadingComments: true,
     }
   },
   [getCommentsCompleted]: (state, action) => {
     return {
       ...state,
-      loading: false,
-      comments: action.payload
+      comments: action.payload,
+      loadingComments: false,
     }
   },
   [getCommentsFailed]: (state) => {
     return {
       ...state,
-      loading: false,
+      loadingComments: false,
     }
   },
   [deleteCommentSuccess]: (state, action) => {
     let index = null;
     state.comments.forEach((value, i) => {
-      if (parseInt(value.commentId) === parseInt(action.payload.commentId)) {
+      if (value._id === action.payload._id) {
         index = i;
       }
     });
@@ -49,7 +49,7 @@ export default handleActions({
   [deleteCommentFailed]: (state) => {
     return {
       ...state,
-      loading: false,
+      loadingComments: false,
     }
   },
   [addCommentSuccess]: (state, action) => {
@@ -62,19 +62,19 @@ export default handleActions({
   [addCommentFailed]: (state) => {
     return {
       ...state,
-      loading: false,
+      loadingComments: false,
     }
   },
   [editCommentSuccess]: (state, action) => {
     let index = null;
     state.comments.forEach((value, i) => {
-      if (parseInt(value.commentId) === parseInt(action.payload.commentId)) {
+      if (value._id === action.payload._id) {
         index = i;
       }
     });
 
     if (index !== null) {
-      state.comments[index].body = action.payload.text;
+      state.comments[index].text = action.payload.text;
       console.log(action.payload.text);
       return {
         ...state,
@@ -85,7 +85,7 @@ export default handleActions({
   [editCommentFailed]: (state) => {
     return {
       ...state,
-      loading: false,
+      loadingComments: false,
     }
   },
 }, initialState);

@@ -1,3 +1,7 @@
 .active.nav-item {
   font-weight: bold;
 }
+
+.active>.nav-link {
+  color: #007bff!important;
+}

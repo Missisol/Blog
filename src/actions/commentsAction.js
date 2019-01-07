@@ -10,10 +10,10 @@ export const addCommentFailed = createAction('[ADD_COMMENT] Adding failed');
 export const editCommentSuccess = createAction('[EDIT_COMMENT] Editing successfully');
 export const editCommentFailed = createAction('[EDIT_COMMENT] Editing failed');
 
-export const getComments = () => (dispatch, getState) => {
+export const getComments = (postId) => (dispatch, getState) => {
   const state = getState();
   dispatch(getCommentsStarted());
-  fetch('http://localhost:3000/api/comments')
+  fetch(`http://localhost:3000/api/comments/${postId}`)
     .then((response) => response.json())
     .then((comments) => {
       dispatch(getCommentsCompleted(comments));
@@ -23,8 +23,8 @@ export const getComments = () => (dispatch, getState) => {
     })
 };
 
-export const deleteComment = (commentId) => (dispatch) => {
-  return fetch(`http://localhost:3000/api/comments/delete/${commentId}`, {
+export const deleteComment = (_id) => (dispatch) => {
+  return fetch(`http://localhost:3000/api/comments/delete/${_id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   })

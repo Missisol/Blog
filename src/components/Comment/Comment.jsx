@@ -1,34 +1,34 @@
 import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
-import {Form, FormGroup, Input, Label, Button} from "reactstrap";
+import {
+  Form, FormGroup, Input, Button, Card,
+  CardHeader, CardBody, CardTitle, CardText, Col
+} from "reactstrap";
 
 export default class Comment extends Component {
 
   render() {
-    const {commentId, userId, name, body} = this.props;
+    const {author, email, title, text, _id, postId} = this.props;
+
     return (
-      <li className="card mb-3">
-        <Link to={`/comments/${commentId}`}>
-          <div className="card-header">
-            <h5 className="card-title">
-              Comment #{commentId} by user #{userId}: {name}
-            </h5>
-          </div>
-        </Link>
-        <div className="card-body" id={commentId}>
-          <p className="card-text">
-            {body}
-          </p>
-          <Form>
-            <FormGroup>
-              <Label for={`text${commentId}`}>Edit text</Label>
-              <Input className="mb-2" type="textarea" name="text" id={`text${commentId}`} />
-              <Button className="com_edit" data-id={commentId}>Edit comment</Button>
-            </FormGroup>
-          </Form>
-          <Button className="com_del" data-id={commentId}>Delete comment</Button>
-        </div>
-      </li>
+      <Fragment>
+        <Col sm="12">
+          <Card>
+            <CardBody id={_id} data-postid={postId}>
+              Comment by user #{author} ({email})
+              <CardTitle>{title}</CardTitle>
+              <CardText>{text}</CardText>
+              <Form>
+                <FormGroup>
+                  <Input className="mb-2" type="textarea" name="text" id={`text${_id}`} placeholder="Edit text"/>
+                  <Button className="commentEdit" data-id={_id}>Edit comment</Button>
+                </FormGroup>
+              </Form>
+              <Button className="commentDelete" data-id={_id}>Delete comment</Button>
+            </CardBody>
+          </Card>
+        </Col>
+      </Fragment>
     )
   }
 }
