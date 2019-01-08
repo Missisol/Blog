@@ -1,5 +1,6 @@
 const express = require('express');
 const CommentModel = require('../models/comments');
+const UserModel = require('../models/users');
 
 const router = express.Router();
 
@@ -33,10 +34,39 @@ router.delete('/delete/:_id', async (req, res, next) => {
 
 // Добавление комментария
 router.post('/add', async (req, res, next) => {
-  let comment = new CommentModel(req.body);
-  res.json(comment);
-  await comment.save();
-  await CommentModel.findOne({id: req.body.id});
+  const username = req.body.author;
+  const email = req.body.email;
+  const title = req.body.title;
+  const text = req.body.text;
+  const postId = req.body.postId;
+
+  const user = await UserModel.findOne({username: username, email: email});
+  if (user === null) {
+    let newUser = new UserModel({username: req.body.author, email: req.body.email});
+    await newUser.save();
+    newUser = await UserModel.findOne({username: username, email: email});
+    const comment = new CommentModel({
+      author: username,
+      email: email,
+      title: title,
+      text: text,
+      postId: postId,
+      userId: newUser._id,
+    });
+    await comment.save();
+  } else {
+    const comment = new CommentModel({
+      author: username,
+      email: email,
+      title: title,
+      text: text,
+      postId: postId,
+      userId: user._id,
+    });
+    await comment.save();
+  }
+  const newComment = await CommentModel.findOne({author: username, email: email, title: title, text: text});
+  res.json(newComment);
 });
 
 // Редактирование комментария

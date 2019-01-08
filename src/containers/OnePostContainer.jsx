@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getPost } from 'actions/onePostAction';
-import {getComments, addComment, deleteComment, editComment} from 'actions/commentsAction';
+import { getComments, addComment, deleteComment, editComment } from 'actions/commentsAction';
 
 import OnePost from 'components/OnePost';
 import CommentForm from 'components/CommentForm';

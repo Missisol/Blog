@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 const routeComments = require('./routes/comments');
 const routePosts = require('./routes/posts');
+const routeUsers = require('./routes/users');
 
 mongoose.connect('mongodb://localhost:27017/blog', { useNewUrlParser: true });
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/comments', routeComments);
 app.use('/api/posts', routePosts);
+app.use('/api/users', routeUsers);
 
 app.use(function (req, res, next) {
   let error = new Error('Page not found');
