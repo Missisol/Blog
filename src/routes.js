@@ -1,6 +1,7 @@
 import HomePage from 'components/HomePage';
 import PostPageContainer from 'containers/PostsPageContainer';
-import OnePostContainer from "containers/OnePostContainer";
+import OnePostContainer from 'containers/OnePostContainer';
+// import UsersContainer from 'containers/UsersContainer'
 
 export default [
   {
@@ -18,4 +19,9 @@ export default [
     exact: true,
     component: OnePostContainer,
   },
+  // {
+  //   path: '/users',
+  //   exact: true,
+  //   component: UsersContainer,
+  // },
 ];

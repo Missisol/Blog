@@ -8,7 +8,7 @@ export const addPostFailed = createAction('[ADD_POST] Adding failed');
 
 export const getPosts = () => (dispatch) => {
   dispatch(getPostsStarted());
-  fetch(`http://localhost:3000/api/posts/quant`)
+  fetch(`http://localhost:3000/api/posts`)
     .then((response) => response.json())
     .then((posts) => {
       dispatch(getPostsCompleted(posts));

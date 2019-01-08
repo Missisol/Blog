@@ -10,13 +10,6 @@ router.get('/', async (req, res, next) => {
   res.json(posts);
 });
 
-//Получение определенного количества постов
-router.get('/quant', async (req, res, next) => {
-  console.log('q', req.params);
-  const posts = await PostModel.find().sort({timestamp: -1}).limit(4);
-  res.json(posts);
-});
-
 //Получение последних постов
 router.get('/top', async (req, res, next) => {
   //Получаем данные, отсортированные по времени записи в базу

@@ -49,7 +49,7 @@ class HomePageContainer extends Component {
       <Fragment>
         <PostForm/>
         <PostsList posts={posts} />
-        { loadingPosts ? 'loadingPosts' : '' }
+        { loadingPosts ? 'loading posts' : '' }
       </Fragment>
     )
   }

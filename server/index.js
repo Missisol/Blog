@@ -14,7 +14,6 @@ const server = http.Server(app);
 
 app.use(cors());
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}));
 app.use('/api/comments', routeComments);
 app.use('/api/posts', routePosts);
 

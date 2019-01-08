@@ -86,9 +86,9 @@ class OnePostContainer extends Component {
     return (
       <Fragment>
         <OnePost post={post} />
-        { loadingPost ? 'loadingPost' : '' }
+        { loadingPost ? 'loading post' : '' }
         <CommentsList comments={comments} />
-        { loadingComments ? 'loadingComments' : '' }
+        { loadingComments ? 'loading comments' : '' }
         <CommentForm postId={match.params._id} />
       </Fragment>
     )
