@@ -18,11 +18,16 @@ router.get('/top', async (req, res, next) => {
   res.json(posts);
 });
 
-
 //Получение одного поста по id
-router.get('/:id', async (req, res, next) => {
-  const post = await PostModel.find({_id: req.params.id});
+router.get('/post/:id', async (req, res, next) => {
+  const post = await PostModel.findOne({_id: req.params.id});
   res.json(post);
+});
+
+// //Получение постов по userId
+router.get('/:userId', async (req, res, next) => {
+  const posts = await PostModel.find({userId: req.params.userId});
+  res.json(posts);
 });
 
 // Добавление поста
@@ -58,13 +63,5 @@ router.post('/add', async (req, res, next) => {
   const newPost = await PostModel.findOne({author: username, email: email, title: title, text: text});
     res.json(newPost);
 });
-
-//Получение пользователей
-// router.get('/', async (req, res, next) => {
-//   //Получаем данные, отсортированные по времени записи в базу
-//   const users = await UserModel.find();
-//   res.json(users);
-// });
-
 
 module.exports = router;

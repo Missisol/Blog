@@ -10,6 +10,7 @@ export default class PostsList extends Component {
 
   render() {
     const {posts} = this.props;
+    console.log(posts);
 
     return (
       <div className="postsList">

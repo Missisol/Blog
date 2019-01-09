@@ -6,7 +6,7 @@ export const getOnePostFailed = createAction('[GET_ONE_POST] Getting failed');
 
 export const getPost = (id) => (dispatch) => {
   dispatch(getOnePostStarted());
-  fetch(`http://localhost:3000/api/posts/${id}`)
+  fetch(`http://localhost:3000/api/posts/post/${id}`)
     .then((response) => response.json())
     .then((post) => {
       dispatch(getOnePostCompleted(post));

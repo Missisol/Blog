@@ -1,5 +1,8 @@
 import {handleActions} from 'redux-actions';
-import { getUsersStarted, getUsersCompleted, getUsersFailed } from 'actions/usersAction';
+import {
+  getUsersStarted, getUsersCompleted, getUsersFailed,
+  getOneUserStarted, getOneUserCompleted, getOneUserFailed,
+} from 'actions/usersAction';
 
 const initialState = {
   users: [],
@@ -21,6 +24,25 @@ export default handleActions({
     }
   },
   [getUsersFailed]: (state) => {
+    return {
+      ...state,
+      loadingUsers: false,
+    }
+  },
+  [getOneUserStarted]: (state) => {
+    return {
+      ...state,
+      loadingUsers: true,
+    }
+  },
+  [getOneUserCompleted]: (state, action) => {
+    return {
+      ...state,
+      users: action.payload,
+      loadingUsers: false,
+    }
+  },
+  [getOneUserFailed]: (state) => {
     return {
       ...state,
       loadingUsers: false,

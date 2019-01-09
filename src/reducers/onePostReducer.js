@@ -1,6 +1,5 @@
 import {handleActions} from 'redux-actions';
-import {
-getOnePostStarted, getOnePostCompleted, getOnePostFailed } from 'actions/onePostAction';
+import { getOnePostStarted, getOnePostCompleted, getOnePostFailed } from 'actions/onePostAction';
 
 const initialState = {
   post: [],

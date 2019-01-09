@@ -18,7 +18,7 @@ export default class User extends Component {
               <CardBody>
                 <CardTitle>{}</CardTitle>
                 <CardText>{}</CardText>
-                <Link to={`/post/${_id}`}><Button>Go to post</Button></Link>
+                <Link to={`/user/${_id}`}><Button>Go to post</Button></Link>
               </CardBody>
             </Card>
           </Col>

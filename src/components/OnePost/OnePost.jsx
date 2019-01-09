@@ -7,20 +7,18 @@ import {Card, Button, CardHeader, CardBody, CardTitle, CardText} from 'reactstra
 export default class OnePost extends Component {
 
   render() {
-    const {post} = this.props;
+    const { post } = this.props;
 
     return (
       <Fragment>
-        {post.map((onepost =>
-            <Card key={onepost._id} id={onepost._id}>
-              <CardHeader>{onepost.author}, {onepost.email}</CardHeader>
+            <Card key={post._id} id={post._id}>
+              <CardHeader>{post.author}, {post.email}</CardHeader>
               <CardBody>
-                <CardTitle>{onepost.title}</CardTitle>
-                <CardText>{onepost.text}</CardText>
+                <CardTitle>{post.title}</CardTitle>
+                <CardText>{post.text}</CardText>
                 <Link to={`/posts`}><Button>Back</Button></Link>
               </CardBody>
             </Card>
-        ))}
       </Fragment>
     )
   }
