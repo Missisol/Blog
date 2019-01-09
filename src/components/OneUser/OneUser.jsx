@@ -1,7 +1,7 @@
-import React, {Component, Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {Card, Button, CardHeader, CardBody, CardTitle, CardText} from 'reactstrap';
+import { Card, Button, CardBody, CardTitle, CardText } from 'reactstrap';
 
 
 export default class OneUser extends Component {
@@ -11,13 +11,15 @@ export default class OneUser extends Component {
 
     return (
       <Fragment>
-            <Card key={user._id} id={user._id}>
-              <CardBody>
-                <CardTitle>{user.username}</CardTitle>
-                <CardText>{user.email}</CardText>
-                <Link to={`/users`}><Button>Back</Button></Link>
-              </CardBody>
-            </Card>
+        {user.map(us =>
+          <Card key={us._id} id={us._id}>
+            <CardBody>
+              <CardTitle>{us.username}</CardTitle>
+              <CardText>{us.email}</CardText>
+              <Link to={`/users`}><Button>Back</Button></Link>
+            </CardBody>
+          </Card>
+        )}
       </Fragment>
     )
   }

@@ -5,8 +5,12 @@ const router = express.Router();
 
 //Получение пользователей
 router.get('/', async (req, res, next) => {
-  const users = await UserModel.find();
-  res.json(users);
+  const users = await UserModel.find({}, (err, users) => {
+    if (err) {
+      next(err);
+    }
+    res.json(users);
+  });
 });
 
 //Получение одного пользователя по id

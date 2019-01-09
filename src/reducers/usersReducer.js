@@ -38,7 +38,7 @@ export default handleActions({
   [getOneUserCompleted]: (state, action) => {
     return {
       ...state,
-      users: action.payload,
+      users: [action.payload],
       loadingUsers: false,
     }
   },

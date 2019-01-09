@@ -7,8 +7,7 @@ export const addPostSuccess = createAction('[ADD_POST] Adding successfully');
 export const addPostFailed = createAction('[ADD_POST] Adding failed');
 
 export const getPosts = (userId) => (dispatch) => {
-  console.log(userId);
-  if (userId === undefined) {
+  if (!userId) {
     dispatch(getPostsStarted());
     fetch(`http://localhost:3000/api/posts`)
       .then((response) => response.json())

@@ -81,7 +81,6 @@ class OnePostContainer extends Component {
 
   render() {
     const {post, loadingPost, comments, loadingComments, match} = this.props;
-    // console.log(match.params._id);
 
     return (
       <Fragment>

@@ -15,7 +15,7 @@ class OneUserContainer extends Component {
     // получение пользователя
     getUser(id);
     // получение комментариев к посту
-    getPosts(id)
+    getPosts(id);
   }
 
   render() {
