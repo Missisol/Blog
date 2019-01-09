@@ -4,19 +4,21 @@ const UserModel = require('../models/users');
 const router = express.Router();
 
 //Получение пользователей
-router.get('/', async (req, res, next) => {
-  const users = await UserModel.find({}, (err, users) => {
-    if (err) {
-      next(err);
-    }
-    res.json(users);
-  });
+router.get('/', async (req, res) => {
+  const users = await UserModel.find()
+    .catch((error) => {
+      console.log(error);
+    });
+  res.json(users);
 });
 
 //Получение одного пользователя по id
-router.get('/:id', async (req, res, next) => {
-const user = await UserModel.findOne({_id: req.params.id});
-res.json(user);
+router.get('/:id', async (req, res) => {
+  const user = await UserModel.findOne({_id: req.params.id})
+    .catch((error) => {
+      console.log(error);
+    });
+  res.json(user);
 });
 
 module.exports = router;
