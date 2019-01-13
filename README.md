@@ -1,4 +1,4 @@
-#Blog
+# Blog
 
-React-Redux-Express-MongoDB app.
+React-Redux-Express-MongoDB application
 
